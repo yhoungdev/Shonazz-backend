@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "sqlserver"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Contact {
+  id          String   @id @default(uuid()) @db.UniqueIdentifier
+  name        String
+  email       String
+  phoneNumber String
+  companyName String
+  message     String?
+  services    String
+  createdAt   DateTime @default(now())
+}
+
+model Partner {
+  id           String   @id @default(uuid()) @db.UniqueIdentifier
+  name         String
+  email        String
+  companyName  String
+  businessType String?
+  information  String
+  createdAt    DateTime @default(now())
+}
