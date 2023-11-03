@@ -3,7 +3,10 @@ const { PrismaClient } = require('@prisma/client');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const Yup = require('yup');
+const partnersController = require('./controller/partner.js')
 
+
+// Use partnersController as needed
 
 
 const app = express();
@@ -27,6 +30,8 @@ app.use(cors());
 app.get('/' , (req, res ) => {
   res.status(200).json({message: "welcome to shonaz api"})
 })
+
+app.post('/partner' , partnersController)
 
 app.post('/contact', async (req, res) => {
   // const { name, email, phoneNumber, companyName, services, message } = req.body;

@@ -27,7 +27,7 @@ model Partner {
   name         String
   email        String
   companyName  String
-  businessType String?
+  businessType String
   information  String
   createdAt    DateTime @default(now())
 }
