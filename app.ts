@@ -2,17 +2,28 @@ const express = require('express');
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors'
 import * as Yup from 'yup'
-import { Response , Request } from "express";
+import { Response , Request, NextFunction } from "express";
 import { sendMail } from "./service/nodemailer";
 import partners_controller from "./controller/partner";
 const env = require('dotenv');
 env.config();
 
-// Use partnersController as needed
+
 
 
 const app = express();
 const prisma = new PrismaClient();
+
+//include cors validator
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.shonazz.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
+//cors validator end 
 
 const contactValidator = Yup.object().shape({
   name: Yup.string().required(),
