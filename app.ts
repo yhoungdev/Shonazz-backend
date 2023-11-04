@@ -5,6 +5,8 @@ import * as Yup from 'yup'
 import { Response , Request } from "express";
 import { sendMail } from "./service/nodemailer";
 import partners_controller from "./controller/partner";
+const env = require('dotenv');
+env.config();
 
 // Use partnersController as needed
 
